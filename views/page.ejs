@@ -1,0 +1,33 @@
+<!-- page.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Weather</title>
+  <script src="page.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="topnav">
+        <form action="/" method="GET">
+            <label for="city"></label>
+            <input type="text" name="city" id="city" placeholder="Search Cities..">
+        </form>    
+    </div>
+    
+    <div>
+        <img class="currentIcon" src="<%= weatherData.current.condition.icon %>" >
+        <h1><%= city %></h1>
+        <div class="mainview">
+            <div class="currentTemp"><%= weatherData.current.temp_f %>°F</div>
+            <div class="currentCondition"><%= weatherData.current.condition.text %></div>
+        </div>
+    </div>
+    
+    <p>The temperature is <%= weatherData.current.temp_f %> °F</p>
+    <p>The wind speed is <%= weatherData.current.wind_mph %> mph</p>
+    <p>The wind direction is <%= weatherData.current.wind_dir %></p>
+    <p>The humidity is <%= weatherData.current.humidity %></p>
+    
+    <p><%= error %></p>
+</body>
+</html>
