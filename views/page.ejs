@@ -15,38 +15,55 @@
     </div>
         <div class="cards">
             <div class="card">
-                <% if (weatherData) { %>
-                    <h1><%= city %></h1>  
-                    <div class="currentCondition"><%= weatherData.current.condition.text %></div>
-  
-                    <div class="mainview">
-                        
-                        <img class="currentIcon" src="<%= weatherData.current.condition.icon %>" >
-                        <div>
-                            <div class="currentTemp"><%= Math.floor(weatherData.current.temp_f) %>°</div>
-                        </div>
-                        
+                <h1><%= city %></h1>  
+                <div class="currentCondition"><%= weatherData.current.condition.text %></div>
+
+                <div class="mainview">
+                    
+                    <img class="currentIcon" src="<%= weatherData.current.condition.icon %>" >
+                        <div class="currentTemp"><%= Math.floor(weatherData.current.temp_f) %>°</div>
+                    
+                </div>
+                <div class="grid-container">
+                    <div class="grid-item">
+                        <p class="head">Feels Like</p>
+                        <hr>
+                        <p class="sub"><%= Math.floor(weatherData.current.feelslike_f) %>°</p>
                     </div>
-                    <div class="grid-container">
-                        <div class="grid-item">
-                            <p>Feels Like <%= weatherData.current.feelslike_f %> °F</p>
-                        </div>
-                        <div class="grid-item">
-                            <p>Wind Speed <%= weatherData.current.wind_mph %> mph</p>
-                        </div>
-                        <div class="grid-item">
-                            <p>Humidity <%= weatherData.current.humidity %></p>
-                        </div>
-                        <div class="grid-item">
-                            <p>Wind Direction <%= weatherData.current.wind_direction %></p>
-                        </div>
+                    <div class="grid-item">
+                        <p class="head">Wind Speed</p>
+                        <hr>
+                        <p class="sub"><%= weatherData.current.wind_mph %> mph</p>
                     </div>
-            <% } else { %>
-                <p><%= error %></p>
-            <% } %>
+                    <div class="grid-item">
+                        <p class="head">Humidity</p>
+                        <hr>
+                        <p class="sub"><%= weatherData.current.humidity %>%</p>
+                    </div>
+                    <div class="grid-item">
+                        <p class="head">Wind Direction</p>
+                        <hr>
+                        <p class="sub"><%= weatherData.current.wind_dir %></p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <% if (forecastData) { %>
+                    <% forecastData.forecast.forecastday.forEach(function(forecast) { %>
+                        <div class="forecast-item">
+                            <p>Date: <%= forecast.dayName %></p>
+                            <p>Max Temp: <%= forecast.day.maxtemp_c %>°C</p>
+                            <p>Min Temp: <%= forecast.day.mintemp_c %>°C</p>
+                            <p>Condition: <%= forecast.day.condition.text %></p>
+                            <img src="<%= forecast.day.condition.icon%>" alt="icon">
+                        </div>
+                    <% }) %>
+                <% } %>
+            </div>
         </div>
-        <div class="card">
-        
+    <div class="footer-container">
+        <div class="footer">
+            <p>Powered by <a class="reference" href="https://www.weatherapi.com/" title="Free Weather API">WeatherAPI.com</a></p>
         </div>
     </div>
     

@@ -1,3 +1,4 @@
+const moment = require('moment'); 
 const axios = require('axios');
 const bodyParser = require('body-parser');
 const express = require('express');
@@ -21,6 +22,29 @@ async function getWeatherData(city) {
   }
 }
 
+async function getForecastData(city) {
+  const apiKey = '336c3ee53cf346c78a7165856233105';
+  const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3`;
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  }
+  catch (error) {
+    console.error('Error fetching forecast data:', error);
+  }
+}
+
+function formatForecastData(forecastData) {
+  return forecastData.map(forecast => {
+    const dayName = moment(forecast.date).format('dddd');
+    return {
+      ...forecast,
+      dayName
+    };
+  });
+}
+
+
 
 app.get('/', async (req, res) => {
     const city = req.query.city;
@@ -28,9 +52,12 @@ app.get('/', async (req, res) => {
     if (city){
       try {
         const weatherData = await getWeatherData(city);
+        const forecastData = await getForecastData(city);
+        const formattedForecast = formatForecastData(forecastData);
         res.render('page', {
             city: city,
             weatherData: weatherData,
+            forecastData: formattedForecast,
             error: null
         });
       } catch (error) {
@@ -38,14 +65,19 @@ app.get('/', async (req, res) => {
           res.render('page', {
               city: null,
               weatherData: null,
+              forecastData: null,
               error: 'Error, please try again'
           });
       }
     }else{
       console.log('No city entered');
+      const weatherData = await getWeatherData('New York');
+      const forecastData = await getForecastData('New York');
+      const formattedForecast = formatForecastData(forecastData);
       res.render('page', {
-          city: null,
-          weatherData: null,
+          city: 'New York',
+          weatherData: weatherData,
+          forecastData: formattedForecast,
           error: null
       });
     }
