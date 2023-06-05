@@ -2,32 +2,114 @@ body{
     background-color: #0B131E;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: #F2F2F2;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    width: 100%;
 }
 h1{
     color: #F2F2F2;
     text-align: left;
     font-size: 50px;
     font-weight: normal;
+    padding: 0;
+    margin: 20px 0px 0px 0px;
+}
+input{
+    width: 100%;;
+    height: 42.5px;
+    line-height: 30px;
+    outline: 0;
+    border: 0;
+    font-size: 1em;
+    border-radius: 20px;
+    padding: 0 20px;
+    margin: 10px 10px 10px 0;
+}
+button{
+    background-color: transparent;
+    border: transparent;
+}
+img{
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease-in-out;
+}
+img:hover{
+    transform: scale(1.1);
+}
+.grid-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 100%;
+    width: 100%;
+}
+.cards{
+    display: flex;
+    flex-direction: row;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    width: 50%;
+    border-radius: 20px;
+    background-color: #1F2A36;
+    padding: 20px;
+    margin: 50px;
+}
+.topnav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px 20px 20px;
+    height: 100px;
+    width: 100%;
+}
+.search{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    width: 500px;
+    border-radius: 20px;
+    background-color: #1F2A36;
+    padding: 0 20px;
 }
 .mainview{
     display: flex;
     flex-direction: row;
-    margin: 0;
-    padding: 0;
-    align-items: last baseline;
-    height: 150px;
-    width: 500px;
-    gap: 50px;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
 }
 .currentIcon{
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     display: block;
-    margin-top: auto;
+    transform: scale(1.8);
+}
+.currentIcon:hover{
+    transform: scale(1.9);
 }
 .currentTemp{
-    margin-top: auto;
     font-size: 150px;
     font-weight: bold;
     padding: 0;
+    margin: 0;
+}
+.currentCondition{
+    text-transform: lowercase;
+    color: #9e9c9c;
+    font-size: 25px;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
+    transform: translate(0, -10px);
 }

@@ -8,26 +8,47 @@
 </head>
 <body>
     <div class="topnav">
-        <form action="/" method="GET">
-            <label for="city"></label>
-            <input type="text" name="city" id="city" placeholder="Search Cities..">
+        <form class="search" action="/" method="GET">
+            <input type="text" name="city" id="city" placeholder="Search Cities.." spellcheck="false">
+            <button><img src="search.png" alt=""></button>
         </form>    
     </div>
-    
-    <div>
-        <img class="currentIcon" src="<%= weatherData.current.condition.icon %>" >
-        <h1><%= city %></h1>
-        <div class="mainview">
-            <div class="currentTemp"><%= weatherData.current.temp_f %>°F</div>
-            <div class="currentCondition"><%= weatherData.current.condition.text %></div>
+        <div class="cards">
+            <div class="card">
+                <% if (weatherData) { %>
+                    <h1><%= city %></h1>  
+                    <div class="currentCondition"><%= weatherData.current.condition.text %></div>
+  
+                    <div class="mainview">
+                        
+                        <img class="currentIcon" src="<%= weatherData.current.condition.icon %>" >
+                        <div>
+                            <div class="currentTemp"><%= Math.floor(weatherData.current.temp_f) %>°</div>
+                        </div>
+                        
+                    </div>
+                    <div class="grid-container">
+                        <div class="grid-item">
+                            <p>Feels Like <%= weatherData.current.feelslike_f %> °F</p>
+                        </div>
+                        <div class="grid-item">
+                            <p>Wind Speed <%= weatherData.current.wind_mph %> mph</p>
+                        </div>
+                        <div class="grid-item">
+                            <p>Humidity <%= weatherData.current.humidity %></p>
+                        </div>
+                        <div class="grid-item">
+                            <p>Wind Direction <%= weatherData.current.wind_direction %></p>
+                        </div>
+                    </div>
+            <% } else { %>
+                <p><%= error %></p>
+            <% } %>
+        </div>
+        <div class="card">
+        
         </div>
     </div>
     
-    <p>The temperature is <%= weatherData.current.temp_f %> °F</p>
-    <p>The wind speed is <%= weatherData.current.wind_mph %> mph</p>
-    <p>The wind direction is <%= weatherData.current.wind_dir %></p>
-    <p>The humidity is <%= weatherData.current.humidity %></p>
-    
-    <p><%= error %></p>
 </body>
 </html>

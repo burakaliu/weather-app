@@ -24,21 +24,32 @@ async function getWeatherData(city) {
 
 app.get('/', async (req, res) => {
     const city = req.query.city;
-    try {
+    console.log(city);
+    if (city){
+      try {
         const weatherData = await getWeatherData(city);
         res.render('page', {
             city: city,
             weatherData: weatherData,
             error: null
         });
-    } catch (error) {
-        console.log(error);
-        res.render('page', {
-            city: null,
-            weatherData: null,
-            error: 'Error, please try again'
-        });
+      } catch (error) {
+          console.log(error);
+          res.render('page', {
+              city: null,
+              weatherData: null,
+              error: 'Error, please try again'
+          });
+      }
+    }else{
+      console.log('No city entered');
+      res.render('page', {
+          city: null,
+          weatherData: null,
+          error: null
+      });
     }
+    
 });
 
 //start the server and listen for incoming requests:
