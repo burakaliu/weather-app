@@ -169,3 +169,37 @@ a.reference{
     padding: 0;
     margin: 0;
 }
+.grid-container#forecast-container{
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    transform: translate(0, -40px);
+}
+.forecast-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: top;
+    border-radius: 20px;
+    background-color: #1F2A36;
+    margin: 20px;
+    padding: 20px;
+    padding-top: 40px;
+    height: 91.5%;
+}
+.head#forecast-day{
+    font-size: 40px;
+}
+.forecast-icon{
+    width: 100px;
+    height: 100px;
+    display: block;
+    transform: scale(1.8);
+    padding-bottom: 30px;
+    padding-top: 10px;
+}
+p.forecast-p{
+    font-size: 20px;
+    font-weight: bold;
+    padding-top: 20px;
+    margin: 0;
+}

@@ -47,19 +47,36 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <% if (forecastData) { %>
-                    <% forecastData.forecast.forecastday.forEach(function(forecast) { %>
-                        <div class="forecast-item">
-                            <p>Date: <%= forecast.dayName %></p>
-                            <p>Max Temp: <%= forecast.day.maxtemp_c %>°C</p>
-                            <p>Min Temp: <%= forecast.day.mintemp_c %>°C</p>
-                            <p>Condition: <%= forecast.day.condition.text %></p>
-                            <img src="<%= forecast.day.condition.icon%>" alt="icon">
-                        </div>
-                    <% }) %>
-                <% } %>
+            <div class="card" style="background-color: transparent">
+                <div class="grid-container" id="forecast-container">
+                    <% if (forecastData) { %>
+                        <% forecastData.forecast.forecastday.forEach(function(forecast) { %>
+                            <div class="forecast-item">
+                                <% const dateParts = forecast.date.split('-');
+                                   const year = parseInt(dateParts[0]);
+                                   const month = parseInt(dateParts[1]);
+                                   const day = parseInt(dateParts[2]);
+                                   const dateObject = new Date(year, month - 1, day);
+                                   const options = { weekday: 'long'};
+                                   const dateString = dateObject.toLocaleDateString('en-US', options);
+                                %>
+                                
+                                <img src="<%= forecast.day.condition.icon %>" class="forecast-icon" alt="icon">
+                                <p class="head" id="forecast-day"><%= dateString %></p>
+                                <hr>
+                                <p class="forecast-p" style="padding-top: 50px;">Max Temp</p>
+                                <hr>
+                                <p class=""><%= forecast.day.maxtemp_f %>°</p>
+                                <p class="forecast-p">Min Temp</p>
+                                <hr>
+                                <p class=""><%= forecast.day.mintemp_c %>°C</p>
+                            </div>
+                        <% }) %>
+                    <% } %>
+                </div>
             </div>
+            
+                   
         </div>
     <div class="footer-container">
         <div class="footer">

@@ -34,17 +34,6 @@ async function getForecastData(city) {
   }
 }
 
-function formatForecastData(forecastData) {
-  return forecastData.map(forecast => {
-    const dayName = moment(forecast.date).format('dddd');
-    return {
-      ...forecast,
-      dayName
-    };
-  });
-}
-
-
 
 app.get('/', async (req, res) => {
     const city = req.query.city;
@@ -53,11 +42,10 @@ app.get('/', async (req, res) => {
       try {
         const weatherData = await getWeatherData(city);
         const forecastData = await getForecastData(city);
-        const formattedForecast = formatForecastData(forecastData);
         res.render('page', {
             city: city,
             weatherData: weatherData,
-            forecastData: formattedForecast,
+            forecastData: forecastData,
             error: null
         });
       } catch (error) {
@@ -73,11 +61,10 @@ app.get('/', async (req, res) => {
       console.log('No city entered');
       const weatherData = await getWeatherData('New York');
       const forecastData = await getForecastData('New York');
-      const formattedForecast = formatForecastData(forecastData);
       res.render('page', {
           city: 'New York',
           weatherData: weatherData,
-          forecastData: formattedForecast,
+          forecastData: forecastData,
           error: null
       });
     }
