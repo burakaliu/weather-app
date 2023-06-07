@@ -1,5 +1,5 @@
 # ☁️ weather app ☁️
-This weather app is a web application that provides current weather information for a specified location using the WeatherAPI. It allows users to check the current temperature, weather conditions, and other relevant details for a given city.
+This weather app is a web application that provides current weather information for a specified location using the WeatherAPI. It allows users to check the current temperature, weather conditions, and other relevant details for a given city. This is just a small project I used to get acquainted with node.js, css, and APIs
 
 ## Features
 * Display the current weather information for a specified location.
